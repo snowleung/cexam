@@ -7,22 +7,18 @@ int reverse(char *p,int len);
 main(){
   int c,strlen,i;
   char line[MAXLINE];
-  i = strlen = 0;
-  
-  /* while((c = getchar())!= '\n'){ */
-  /*   line[i++] = c; */
-
-  /* } */
-  /* printf("%s ",line); */
-  /* return 0; */
-  
+  i = 0;
+    
   while((c = getchar())!= '\n'){
     line[i] = c;
     i++;
-    /* if (i>MAXLINE) break;     */
+    if (i>MAXLINE) break;
   }
+  strlen = i;
   if (reverse(line,i)==0)
-    printf("%s",line);
+    for (i=0;i<strlen;i++){
+      printf("%c",line[i]);
+    }
   else
     printf("%s","cnt");
   return 0;
@@ -33,10 +29,14 @@ int reverse(char *p,int len)
   char *pend ;
   pend = p+len-1;  
   char swap;
-  for (;p!=pend&&(p+1)!=pend;p++,pend--){
+  int m;
+  while(1){
+
     swap = *p;
     *p = *pend;
     *pend = swap;
+    if (p==pend||(p+1) == pend) break;
+    p++;pend--;
   }
   return 0;
 }
