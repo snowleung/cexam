@@ -67,13 +67,13 @@ int main(){
   while(1){
     //    fprintf(stdout,"%s","ok");
     unsigned int client_len = sizeof(echoclient);
-    if ((clientsock = accept(server_sock,(struct sockaddr *) &echoclient,&client_len))<0) exit(0);
+    if ((clientsock = accept(server_sock,(struct sockaddr *) &echoclient,&client_len))<0) exit(1);
     //    fprintf(stderr,"%s",inet_ntoa(echoclient.sin_addr));
     echo_len = recv(clientsock,buff,MAXBUFF_SIZE,0);
-    //    buff[echo_len+1] = '\0';
+    buff[echo_len+1] = '\0';
     //    fprintf(stdout,"ok%s",buff);
+    fprintf(stdout,"%s\n",buff);
     close(clientsock);
-    fprintf(stdout,"%s",buff);
 
   }
 
